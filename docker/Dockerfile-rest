@@ -1,0 +1,5 @@
+FROM openjdk:24-jdk-slim
+WORKDIR /app
+COPY ../rest/target/rest-*.jar rest-app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "rest-app.jar"]

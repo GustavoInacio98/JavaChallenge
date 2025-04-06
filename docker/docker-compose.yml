@@ -1,0 +1,54 @@
+version: '3.7'
+
+services:
+  # Kafka service
+  kafka:
+    image: wurstmeister/kafka:latest
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INSIDE-KAFKA:9093
+      KAFKA_LISTENER_SECURITY_PROTOCOL: PLAINTEXT
+      KAFKA_LISTENER_PORT: 9093
+      KAFKA_LISTENERS: INSIDE-KAFKA:9093
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_NAME_INSIDE: INSIDE
+    ports:
+      - "9093:9093"
+    depends_on:
+      - zookeeper
+
+  # Zookeeper service for Kafka
+  zookeeper:
+    image: wurstmeister/zookeeper:latest
+    environment:
+      ZOOKEEPER_SERVER_ID: 1
+      ZOOKEEPER_LISTENER_PORT: 2181
+    ports:
+      - "2181:2181"
+
+  # Rest API service
+  rest:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile-rest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - kafka
+    networks:
+      - app-network
+
+  # Calculator service
+  calculator:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile-calculator
+    ports:
+      - "8081:8081"
+    depends_on:
+      - kafka
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
