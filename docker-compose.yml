@@ -1,7 +1,4 @@
-version: '3.7'
-
 services:
-  # Kafka service
   kafka:
     image: wurstmeister/kafka:latest
     environment:
@@ -16,20 +13,18 @@ services:
     depends_on:
       - zookeeper
 
-  # Zookeeper service for Kafka
   zookeeper:
-    image: wurstmeister/zookeeper:latest
+    image: zookeeper:3.7
     environment:
       ZOOKEEPER_SERVER_ID: 1
       ZOOKEEPER_LISTENER_PORT: 2181
     ports:
       - "2181:2181"
 
-  # Rest API service
   rest:
     build:
       context: .
-      dockerfile: ./docker/Dockerfile-rest
+      dockerfile: ./docker/Dockerfile-rest  
     ports:
       - "8080:8080"
     depends_on:
@@ -37,11 +32,10 @@ services:
     networks:
       - app-network
 
-  # Calculator service
   calculator:
     build:
       context: .
-      dockerfile: ./docker/Dockerfile-calculator
+      dockerfile: ./docker/Dockerfile-calculator  
     ports:
       - "8081:8081"
     depends_on:
@@ -52,3 +46,4 @@ services:
 networks:
   app-network:
     driver: bridge
+

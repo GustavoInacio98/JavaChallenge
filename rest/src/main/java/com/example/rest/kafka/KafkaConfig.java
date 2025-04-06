@@ -13,6 +13,9 @@ import org.springframework.kafka.core.*;
 import org.springframework.kafka.requestreply.ReplyingKafkaTemplate;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerializer;
+import org.springframework.kafka.listener.KafkaMessageListenerContainer;
+import org.springframework.kafka.listener.ContainerProperties;
+
 
 import java.util.HashMap;
 import java.util.Map;

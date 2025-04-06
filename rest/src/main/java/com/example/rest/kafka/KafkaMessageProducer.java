@@ -1,6 +1,8 @@
 package com.example.rest.kafka;
 
 import com.example.rest.dto.OperationKafkaRequest;
+
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.header.internals.RecordHeader;
 import org.springframework.beans.factory.annotation.Value;
@@ -46,9 +48,9 @@ public class KafkaMessageProducer {
 
         // Send and wait for reply
         RequestReplyFuture<String, Object, Object> future = kafkaTemplate.sendAndReceive(record);
-        Message<Object> responseMessage = future.get(10, TimeUnit.SECONDS);
+        ConsumerRecord<String, Object> response = future.get(10, TimeUnit.SECONDS);
 
         // Cast and return result
-        return new BigDecimal(responseMessage.getPayload().toString());
+        return new BigDecimal(response.value().toString());
     }
 }
