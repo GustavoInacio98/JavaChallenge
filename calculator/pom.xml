@@ -48,7 +48,7 @@
             <configuration>
                 <archive>
                     <manifest>
-                        <mainClass>com.teuprojeto.calculator.CalculatorApplication</mainClass>
+                        <mainClass>com.example.calculator.CalculatorApplication</mainClass>
                     </manifest>
                 </archive>
             </configuration>
