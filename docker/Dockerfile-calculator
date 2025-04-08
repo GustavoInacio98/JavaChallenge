@@ -1,5 +1,5 @@
 FROM openjdk:24-jdk-slim
 WORKDIR /app
-COPY ../calculator/target/calculator-*.jar calculator-app.jar
+COPY calculator/target/calculator-*.jar calculator-app.jar
 EXPOSE 8081
 ENTRYPOINT ["java", "-jar", "calculator-app.jar"]

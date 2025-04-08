@@ -23,6 +23,6 @@ public class CalculatorService {
         if (b.compareTo(BigDecimal.ZERO) == 0) {
             throw new ArithmeticException("Division by zero");
         }
-        return a.divide(b, 10, BigDecimal.ROUND_HALF_UP); // Support for arbitrary precision
+        return a.divide(b, 10, BigDecimal.ROUND_HALF_UP); 
     }
 }

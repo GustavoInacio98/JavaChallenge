@@ -16,7 +16,7 @@
   </modules>
 
   <properties>
-    <java.version>17</java.version>
+    <java.version>24</java.version>
     <spring.boot.version>3.2.2</spring.boot.version>
   </properties>
 
@@ -33,13 +33,11 @@
   </dependencyManagement>
 
   <build>
-    <pluginManagement>
       <plugins>
         <plugin>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-maven-plugin</artifactId>
         </plugin>
       </plugins>
-    </pluginManagement>
   </build>
 </project>
